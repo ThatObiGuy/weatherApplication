@@ -1,0 +1,31 @@
+<!--**Home Page**:
+Develop a Home Page featuring a heading, an input field for the city name, a button to submit the input,
+and a navbar with four buttons to pages for Temperature, Humidity, UV Index, and Wind Speed. -->
+
+<html>
+    <head>
+        <title>Local Weather</title>
+        <link rel="stylesheet", href="styles.css" />
+
+    </head>
+
+    <body class = "index">
+        <ul>
+            <li style="float:left"><a class="active" href="">Home</a></li>
+            <li><a href="pages/temperature.html">Temperature</a></li>
+            <li><a href="pages/humidity.html">Humidity</a></li>
+            <li><a href="pages/uv.html">UV Index</a></li>
+            <li><a href="pages/wind.html">Wind Speed</a></li>
+        </ul>
+
+        <div class = "infoSection">
+            <h1>Welcome to Local Weather</h1>
+            <input type="text" id="location" placeholder="Enter location">
+            <button onclick="getWeather()"> Submit </button>
+        </div>
+        
+    </body>
+
+    <script src="script.js"></script>
+
+</html>

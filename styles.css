@@ -1,0 +1,60 @@
+/* Boilerplate: Ensure each HTML page has appropriate styling using `styles.css`. */
+/* Background Color: Give each HTML page a unique background color. */
+
+/* */
+
+/* Nav-bar related*/
+ul {
+    list-style-type: none;      /* Gets rid of bullet points*/
+    overflow: hidden;           /* for manage floating elements and maintaing bar*/
+    background-color: #333;   /* background-color of navbar*/
+}
+  
+li {
+    float: right;    /* list items float next to each other from the right-side*/
+}
+  
+li a {
+    display: block;           /* for specifying padding*/
+    color: white;           /* text will be white instead of default blue of links*/
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;    /* text will not have the underline common of links*/
+}
+  
+li a:hover {
+    background-color: #111; /* different color on hover. good UI*/
+}
+
+.active {
+    background-color: #6495ED;  /* clearly indicated active page to user*/
+}
+
+/* Ensuring each page has a different background color*/
+body.index {
+    background-color: #f0f8ff;
+}
+
+body.temperature {
+    background-color: #faebd7;
+}
+
+body.humidity {
+    background-color: #e6e6fa;
+}
+
+body.uv {
+    background-color: #f5f5dc;
+}
+
+body.wind {
+    background-color: #fffaf0;
+}
+
+/* aesthetics*/
+.infoSection{
+    display: flex;              /* return of the flexbox*/
+    flex-direction: column;     /* stops elements from appearing inline*/
+    justify-content: center;
+    align-items: center;
+}
