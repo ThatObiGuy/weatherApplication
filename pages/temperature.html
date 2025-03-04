@@ -1,0 +1,57 @@
+<!--**Temperature Section**:
+Create a HTML page displaying the temperature with a title, a paragraph (with an id for temperature data),
+a toggle button for Fahrenheit and Celsius, and space for a thermometer icon. -->
+
+<html>
+    <head>
+        <title>Temperature</title>
+        <link rel="stylesheet", href="../styles.css" /> <!-- ../ from file being outside pages folder-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"/> <!-- For toggle button-->
+
+    </head>
+
+    <body class = "temperature">
+        <ul>
+            <li style="float:left"><a href="../index.html">Home</a></li>
+            <li><a class="active" href="temperature.html">Temperature</a></li>
+            <li><a href="humidity.html">Humidity</a></li>
+            <li><a href="uv.html">UV Index</a></li>
+            <li><a href="wind.html">Wind Speed</a></li>
+        </ul>
+
+        <div class = "infoSection">
+            <h1>Current local temperature:</h1>
+            <p id = "temperatureReading"> 0.0 </p>
+            <p>degrees</p>
+
+            <div id ="thermometer">
+                <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1,-1)">
+
+                    <circle
+                    r="20"
+                    cx="50"
+                    cy="30"
+                    fill="grey"
+                    /> <!-- Base of thermometer-->
+
+                    <rect
+                    width="20"
+                    height="75"
+                    x="40"
+                    y="25"
+                    rx="10"
+                    ry="10"
+                    fill="grey"
+                    /> <!-- This is the stalk-->
+
+                </svg>
+            </div>
+
+            <input type="checkbox" id="tempUnit" class="btn-check">
+            <label class="btn btn-primary" for="tempUnit">Fahrenheit</label>
+            
+        </div>
+        
+    </body>
+
+</html>

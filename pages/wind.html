@@ -1,0 +1,48 @@
+<!--**Wind Speed Section**:
+Create a HTML page displaying wind speed with a title, a paragraph (with an id for wind data), and space for a gust of air icon. -->
+
+<html>
+    <head>
+        <title>Wind Speed</title>
+        <link rel="stylesheet", href="../styles.css"/> <!-- ../ from file being outside pages folder-->
+
+    </head>
+
+    <body class = "wind">
+        <ul>
+            <li style="float:left"><a href="../index.html">Home</a></li>
+            <li><a href="temperature.html">Temperature</a></li>
+            <li><a href="humidity.html">Humidity</a></li>
+            <li><a href="uv.html">UV Index</a></li>
+            <li><a class="active" href="wind.html">Wind Speed</a></li>
+        </ul>
+
+        <div class = "infoSection">
+            <h1>Current local wind speed:</h1>
+            <p id = "windReading"> 0.0 </p>
+            <p>kmph</p>
+            <div id ="gust">
+                <svg width="75" height="75" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1,-1)">
+
+                    <path 
+                    d="M0,25 Q20,0 30,25 T70,25"
+                    fill="none"
+                    stroke="grey"
+                    stroke-width="5"
+                    /> <!-- This is the lower line-->
+
+                    <path
+                    d="M5,50 Q25,25 35,50 T75,50"
+                    fill="none"
+                    stroke="grey"
+                    stroke-width="5"
+                    /> <!-- This is the upper line-->
+
+                </svg>
+
+            </div>
+        </div>
+        
+    </body>
+
+</html>
