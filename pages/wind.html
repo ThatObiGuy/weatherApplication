@@ -5,6 +5,7 @@ Create a HTML page displaying wind speed with a title, a paragraph (with an id f
     <head>
         <title>Wind Speed</title>
         <link rel="stylesheet", href="../styles.css"/> <!-- ../ from file being outside pages folder-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"/> <!-- For toggle button-->
 
     </head>
 
@@ -21,10 +22,11 @@ Create a HTML page displaying wind speed with a title, a paragraph (with an id f
             <h1>Current local wind speed:</h1>
             <p id = "windReading"> 0.0 </p>
             <p>kmph</p>
-            <div id ="gust">
+            <div>
                 <svg width="75" height="75" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1,-1)">
 
                     <path 
+                    id = "upGust"
                     d="M0,25 Q20,0 30,25 T70,25"
                     fill="none"
                     stroke="grey"
@@ -32,6 +34,7 @@ Create a HTML page displaying wind speed with a title, a paragraph (with an id f
                     /> <!-- This is the lower line-->
 
                     <path
+                    id = "downGust"
                     d="M5,50 Q25,25 35,50 T75,50"
                     fill="none"
                     stroke="grey"
@@ -44,5 +47,11 @@ Create a HTML page displaying wind speed with a title, a paragraph (with an id f
         </div>
         
     </body>
+
+    <script src="../script.js"></script>
+    <script>
+        window.addEventListener('load', updateWind);
+        setBackgroundImage();
+    </script>
 
 </html>

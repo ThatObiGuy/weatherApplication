@@ -14,49 +14,142 @@ function getWeather() {
     fetch('sample.json')
         .then((response) => response.json())
         .then((data) => {
+
             // Find the weather data for the input city
-            const cityData = data.find(city => city.cityName.toLowerCase() === location);
+            const inputCityData = data.find(city => city.cityName.toLowerCase() === location);
+
+            // Store the weather data in sessionStorage
+            sessionStorage.setItem('inputCityWeatherData', JSON.stringify(inputCityData));
             
-            if (cityData) {
-                // Update the respective elements with data from the input city
-                document.getElementById('temperature').innerText = `Temperature: ${cityData.temperatureCelsius}°C`;
-                document.getElementById('humidity').innerText = `Humidity: ${cityData.humidity * 100}%`;
-                document.getElementById('uvIndex').innerText = `UV Index: ${cityData.uvIndex}`;
-                document.getElementById('windSpeed').innerText = `Wind Speed: ${cityData.windSpeed}`;
+            if (inputCityData) { // if the city data exists
+
+                console.log(inputCityData); // for debugging purposes
+                console.log(sessionStorage['inputCityWeatherData']); // for debugging purposes
                 
-                // Style Updates based on weather conditions
-                // Temperature color change
-                if (cityData.temperatureCelsius > 20) {
-                    document.getElementById('thermometer').style.fill = 'yellow';
-                } else {
-                    document.getElementById('thermometer').style.fill = 'blue';
-                }
-
-                // Wind speed color change (example threshold: 20km)
-                if (parseInt(cityData.windSpeed) > 20) {
-                    document.getElementById('windSpeed').style.fill = 'red';
-                } else {
-                    document.getElementById('windSpeed').style.fill = 'green';
-                }
-
-                // Humidity color change (example threshold: 0.5)
-                if (cityData.humidity > 0.5) {
-                    document.getElementById('drop').style.fill = 'orange';
-                } else {
-                    document.getElementById('drop').style.fill = 'purple';
-                }
-
-                // UV Index color change (example threshold: 5)
-                if (cityData.uvIndex > 5) {
-                    document.getElementById('uvIndex').style.fill = 'pink';
-                } else {
-                    document.getElementById('uvIndex').style.fill = 'brown';
-                }
             } else {
                 console.error('City not found');
             }
         })
-        .catch((error) => {
-            console.error('Error fetching weather data:', error);
-        });
+}
+
+// Update the respective elements with data from the input city
+
+// Function to retrieve weather data from sessionStorage
+function getStoredWeatherData() {
+    const storedWeatherData = sessionStorage.getItem('inputCityWeatherData');
+    return storedWeatherData ? JSON.parse(storedWeatherData) : null; // return the parsed JSON data or null if no data is found
+}
+
+function updateHumidity() {
+
+    // Update temperature reading from session storage
+    const cityData = getStoredWeatherData();
+
+    // Update humidity reading
+    document.getElementById('humidityReading').innerText = `${cityData.humidity}`;
+
+    // Humidity color change (example threshold: 0.5)
+    if (cityData.humidity > 0.5) {
+        document.getElementById('dropBottom').style.fill = 'orange';
+        document.getElementById('dropTop').style.fill = 'orange';
+    } else {
+        document.getElementById('dropBottom').style.fill = 'purple';
+        document.getElementById('dropTop').style.fill = 'purple';
+    }
+}
+
+function updateTemperature() {
+
+    // Update temperature reading from session storage
+    const cityData = getStoredWeatherData();
+
+    // Update temperature reading from session storage
+    document.getElementById('temperatureReading').innerText = `${cityData.temperatureCelsius}`;
+
+    // Style Updates based on weather conditions
+    // Temperature color change
+    if (parseInt(`${cityData.temperatureCelsius}`) >= 20) {
+        document.getElementById('thermometerBase').style.fill = 'yellow';
+        document.getElementById('thermometerNeck').style.fill = 'yellow';
+    } else {
+        document.getElementById('thermometerBase').style.fill = 'blue';
+        document.getElementById('thermometerNeck').style.fill = 'blue';
+    }
+}
+
+function toggleTemperatureUnit() {
+    const cityData = getStoredWeatherData();
+    const tempUnitCheckbox = document.getElementById('tempUnit');
+    const temperatureReading = document.getElementById('temperatureReading');
+
+    if (tempUnitCheckbox.checked) {
+        // Convert Celsius to Fahrenheit
+        const tempFahrenheit = (cityData.temperatureCelsius * 9/5) + 32;
+        temperatureReading.innerText = tempFahrenheit.toFixed(1); // Rounded to 1 decimal place
+    } else {
+        // Display Celsius
+        temperatureReading.innerText = cityData.temperatureCelsius;
+    }
+}
+
+function updateUv() {
+
+    // Update temperature reading from session storage
+    const cityData = getStoredWeatherData();
+
+    // Update UV Index reading from session storage
+    document.getElementById('uvReading').innerText = `${cityData.uvIndex}`;
+
+    // UV Index color change (example threshold: 5)
+    if (cityData.uvIndex > 5) {
+        document.getElementById('center').style.fill = 'pink';
+        document.getElementById('nBeam').style.fill = 'pink';
+        document.getElementById('nwBeam').style.fill = 'pink';
+        document.getElementById('wBeam').style.fill = 'pink';
+        document.getElementById('swBeam').style.fill = 'pink';
+        document.getElementById('sBeam').style.fill = 'pink';
+        document.getElementById('seBeam').style.fill = 'pink';
+        document.getElementById('eBeam').style.fill = 'pink';
+        document.getElementById('neBeam').style.fill = 'pink';
+    } else {
+        document.getElementById('center').style.fill = 'brown';
+        document.getElementById('nBeam').style.fill = 'brown';
+        document.getElementById('nwBeam').style.fill = 'brown';
+        document.getElementById('wBeam').style.fill = 'brown';
+        document.getElementById('swBeam').style.fill = 'brown';
+        document.getElementById('sBeam').style.fill = 'brown';
+        document.getElementById('seBeam').style.fill = 'brown';
+        document.getElementById('eBeam').style.fill = 'brown';
+        document.getElementById('neBeam').style.fill = 'brown';
+    }
+}
+
+function updateWind() {
+
+    // Update temperature reading from session storage
+    const cityData = getStoredWeatherData();
+
+    // Update wind speed reading from session storage
+    document.getElementById('windReading').innerText = `${cityData.windSpeed}`;
+
+    // Wind speed color change (example threshold: 20km)
+    if (parseInt(cityData.windSpeed) > 20) {
+        document.getElementById('upGust').style.stroke = 'red';
+        document.getElementById('downGust').style.stroke = 'red';
+    } else {
+        document.getElementById('upGust').style.stroke = 'green';
+        document.getElementById('downGust').style.stroke = 'green';
+    }
+}
+
+function setBackgroundImage() {
+    const cityData = getStoredWeatherData();
+    const cityName = cityData['cityName'];
+    if (cityName) {
+        const bodyElement = document.body;
+        bodyElement.style.backgroundImage = `url('../images/${cityName}.jpg')`;
+        bodyElement.style.backgroundSize = 'cover';
+        bodyElement.style.backgroundPosition = 'center';
+        bodyElement.style.backgroundBlendMode = 'overlay'; // Blend the background image with the color
+    }
 }

@@ -5,6 +5,7 @@ Develop a HTML page displaying the humidity with a title, a paragraph (with an i
     <head>
         <title>Humidity</title>
         <link rel="stylesheet", href="../styles.css" /> <!-- ../ from file being outside pages folder-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"/> <!-- For toggle button-->
 
     </head>
 
@@ -21,10 +22,11 @@ Develop a HTML page displaying the humidity with a title, a paragraph (with an i
             <h1>Current local humidity:</h1>
             <p id = "humidityReading"> 0.0 </p>
             <p>%</p>
-            <div id ="drop">
+            <div>
                 <svg width="100" height="150" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1,-1)">
 
                     <circle
+                    id ="dropBottom"
                     r="40"
                     cx="50"
                     cy="40"
@@ -32,6 +34,7 @@ Develop a HTML page displaying the humidity with a title, a paragraph (with an i
                     /> <!-- Base of drop-->
 
                     <polygon
+                    id ="dropTop"
                     points="12,50 50,110 88,50"
                     fill="grey"
                     /> <!-- This is the stalk-->
@@ -41,5 +44,11 @@ Develop a HTML page displaying the humidity with a title, a paragraph (with an i
         </div>
         
     </body>
+
+    <script src="../script.js"></script>
+    <script>
+        window.addEventListener('load', updateHumidity);
+        setBackgroundImage();
+    </script>
 
 </html>

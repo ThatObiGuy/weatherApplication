@@ -44,11 +44,11 @@ body.humidity {
 }
 
 body.uv {
-    background-color: #f5f5dc;
+    background-color: #dadac2;
 }
 
 body.wind {
-    background-color: #fffaf0;
+    background-color: #e9ddc4;
 }
 
 /* aesthetics*/
