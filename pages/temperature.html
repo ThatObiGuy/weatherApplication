@@ -21,8 +21,8 @@ a toggle button for Fahrenheit and Celsius, and space for a thermometer icon. --
 
         <div class = "infoSection">
             <h1>Current local temperature:</h1>
-            <p id = "temperatureReading"> 0.0 </p>
-            <p>degrees</p>
+            <p id = "temperatureData"> 0.0 </p>
+            <p id="tempType">degrees (Celsius)</p>
 
             <div>
                 <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1,-1)">
@@ -50,7 +50,7 @@ a toggle button for Fahrenheit and Celsius, and space for a thermometer icon. --
             </div>
 
             <input type="checkbox" id="tempUnit" class="btn-check">
-            <label class="btn btn-primary" for="tempUnit">Fahrenheit</label>
+            <label class="btn btn-primary" for="tempUnit" id="unitChangeLabel">Change to Fahrenheit</label>
             
         </div>
         

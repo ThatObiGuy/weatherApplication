@@ -46,7 +46,7 @@ function updateHumidity() {
     const cityData = getStoredWeatherData();
 
     // Update humidity reading
-    document.getElementById('humidityReading').innerText = `${cityData.humidity}`;
+    document.getElementById('humidityData').innerText = `${cityData.humidity}`;
 
     // Humidity color change (example threshold: 0.5)
     if (cityData.humidity > 0.5) {
@@ -64,7 +64,7 @@ function updateTemperature() {
     const cityData = getStoredWeatherData();
 
     // Update temperature reading from session storage
-    document.getElementById('temperatureReading').innerText = `${cityData.temperatureCelsius}`;
+    document.getElementById('temperatureData').innerText = `${cityData.temperatureCelsius}`;
 
     // Style Updates based on weather conditions
     // Temperature color change
@@ -80,15 +80,20 @@ function updateTemperature() {
 function toggleTemperatureUnit() {
     const cityData = getStoredWeatherData();
     const tempUnitCheckbox = document.getElementById('tempUnit');
-    const temperatureReading = document.getElementById('temperatureReading');
+    const temperatureReading = document.getElementById('temperatureData');
+    const unitChangeLabel = document.getElementById('unitChangeLabel');
 
     if (tempUnitCheckbox.checked) {
         // Convert Celsius to Fahrenheit
         const tempFahrenheit = (cityData.temperatureCelsius * 9/5) + 32;
         temperatureReading.innerText = tempFahrenheit.toFixed(1); // Rounded to 1 decimal place
+        unitChangeLabel.innerHTML = 'Change to Celsius';
+        document.getElementById('tempType').innerText = 'degrees (Fahrenheit)';
     } else {
         // Display Celsius
         temperatureReading.innerText = cityData.temperatureCelsius;
+        unitChangeLabel.innerHTML = 'Change to Fahrenheit';
+        document.getElementById('tempType').innerText = 'degrees (Celsius)';
     }
 }
 
@@ -98,7 +103,7 @@ function updateUv() {
     const cityData = getStoredWeatherData();
 
     // Update UV Index reading from session storage
-    document.getElementById('uvReading').innerText = `${cityData.uvIndex}`;
+    document.getElementById('uvData').innerText = `${cityData.uvIndex}`;
 
     // UV Index color change (example threshold: 5)
     if (cityData.uvIndex > 5) {
@@ -130,7 +135,7 @@ function updateWind() {
     const cityData = getStoredWeatherData();
 
     // Update wind speed reading from session storage
-    document.getElementById('windReading').innerText = `${cityData.windSpeed}`;
+    document.getElementById('windData').innerText = `${cityData.windSpeed}`;
 
     // Wind speed color change (example threshold: 20km)
     if (parseInt(cityData.windSpeed) > 20) {
